@@ -20,9 +20,9 @@ public class EVRDataService {
     private EVRDataService self;
     private RestTemplate restTemplate = new RestTemplate();
     @Value("${evr.url}")
-    private String evrResourceUrl;
+    private String evrResourceUrl="";
     @Value("${evr.limit}")
-    private int limit;
+    private int limit=3;
 
     @Cacheable(value = "evrJsonCache")
     public EVRResponseData getCompleteJson(){
@@ -30,8 +30,14 @@ public class EVRDataService {
         return response.getBody();
     }
 
+    public EVRResponseData getClonedJson(){
+        if(null!=self)
+        return self.getCompleteJson().clone();
+        else return getCompleteJson();
+    }
+
     public EVRResponseData getEvrForCountriesWithHighestStandardRate(){
-        EVRResponseData evrResponseData = self.getCompleteJson().clone();
+        EVRResponseData evrResponseData = getClonedJson();
         Map<String, CountryRateData> rates = evrResponseData.getRates();
         Comparator<CountryRateData> byStandardRate = (CountryRateData obj1, CountryRateData obj2) -> obj2.getStandard_rate().compareTo(obj1.getStandard_rate());
         LinkedHashMap<String, CountryRateData> sortedRateMap = rates.entrySet().stream()
@@ -43,7 +49,7 @@ public class EVRDataService {
     }
 
     public EVRResponseData getEvrForCountriesWithLowestReducedVATRate(){
-        EVRResponseData evrResponseData = self.getCompleteJson().clone();
+        EVRResponseData evrResponseData = getClonedJson();
         Map<String, CountryRateData> rates = evrResponseData.getRates();
         Comparator<CountryRateData> byStandardRate = (CountryRateData obj1, CountryRateData obj2) -> obj1.getReduced_rate().compareTo(obj1.getReduced_rate());
         LinkedHashMap<String, CountryRateData> sortedRateMap = rates.entrySet().stream()
