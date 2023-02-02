@@ -7,16 +7,16 @@ This project demonstrates a microservice with endpoints which follows industry s
 * Maven
 * Postman
 * Git
+* Docker
 
 ## 02 - Build
 
-Follow below steps to build
+Follow below steps for building docker image
 * Open terminal at the root directory
-* mvn clean
-* mvn install
+* docker build -t euvrservice:1.0 .
 
-## 02 - Run Microservice
-* java -jar euvrservice-0.0.1-SNAPSHOT.jar
+## 02 - Run container
+* docker run -p 8080:8080 euvrservice:1.0
 
 ## 03 - Testing endpoint with Postman
 * import postman collection 'evrservice.postman_collection.json'
