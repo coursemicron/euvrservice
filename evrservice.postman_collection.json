@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "bb3d67b0-2c37-4b81-8149-dccf44179eb9",
+		"name": "evrservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List all data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/evrservice/list/all"
+			},
+			"response": []
+		},
+		{
+			"name": "List coutnries with Highest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/evrservice/list/with_highest_standard_rate"
+			},
+			"response": []
+		},
+		{
+			"name": "List coutnries with Lowest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/evrservice/list/with_lowest_reduced_vat_rate"
+			},
+			"response": []
+		},
+		{
+			"name": "Evict Cache",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/evrservice/clearAllCaches"
+			},
+			"response": []
+		}
+	]
+}
